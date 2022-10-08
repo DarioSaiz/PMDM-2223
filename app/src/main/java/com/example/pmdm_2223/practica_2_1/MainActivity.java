@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button restador;
     Button reseteador;
     TextView contador;
+    Contador i = new Contador(0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         reseteador=findViewById(R.id.botonreset);
         contador=findViewById(R.id.contador);
 
-        sumador.setOnClickListener(new Controlador(contador, sumador));
-        restador.setOnClickListener(new Controlador(contador, restador));
-        reseteador.setOnClickListener(new Controlador(contador,reseteador));
+        sumador.setOnClickListener(new Controlador(i, contador, sumador));
+        restador.setOnClickListener(new Controlador(i, contador, restador));
+        reseteador.setOnClickListener(new Controlador(i, contador,reseteador));
     }
 }

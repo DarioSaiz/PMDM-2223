@@ -6,8 +6,12 @@ public class Contador {
 
     int cont;
 
-    public Contador(){
-        this.cont=0;
+    public Contador(int cont){
+        this.cont=cont;
+    }
+
+    public int getCont() {
+        return cont;
     }
 
     public int suma(){
@@ -19,6 +23,6 @@ public class Contador {
     }
 
     public int reset(){
-        return 0;
+        return cont=0;
     }
 }

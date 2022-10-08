@@ -9,10 +9,11 @@ public class Controlador implements View.OnClickListener{
     Button b;
     TextView c;
     String id;
-    Contador i = new Contador();
+    Contador i;
 
-    public Controlador(TextView c, Button b){
+    public Controlador(Contador i, TextView c, Button b){
         this.id=b.getResources().getResourceEntryName(b.getId());
+        this.i=i;
         this.b=b;
         this.c=c;
     }
@@ -21,16 +22,15 @@ public class Controlador implements View.OnClickListener{
     public void onClick(View view) {
         switch (id){
             case "botonreset":
-                c.setText(String.valueOf(i.reset()));
+                i.reset();
                 break;
             case "botonsuma":
-                c.setText(String.valueOf(i.suma()));
+                i.suma();
                 break;
-
             case "botonresta":
-                c.setText(String.valueOf(i.resta()));
+                i.resta();
                 break;
-
         }
+        c.setText(String.valueOf(i.getCont()));
     }
 }
