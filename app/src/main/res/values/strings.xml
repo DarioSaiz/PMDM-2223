@@ -3,4 +3,5 @@
     <string name="reset">RESET</string>
     <string name="suma">+</string>
     <string name="resta">-</string>
+    <string name="cero">0</string>
 </resources>
