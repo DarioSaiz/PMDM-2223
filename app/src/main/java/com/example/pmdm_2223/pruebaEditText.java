@@ -44,5 +44,8 @@ public class pruebaEditText extends AppCompatActivity {
                 return false;
             }
         };
+        editNombre.setOnEditorActionListener(manejador);
+        editMail.setOnEditorActionListener(manejador);
+        editUser.setOnEditorActionListener(manejador);
     }
 }
