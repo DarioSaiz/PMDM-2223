@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.pmdm_2223.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainContador extends AppCompatActivity {
 
     Button sumador;
     Button restador;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_2_1);
 
         sumador=findViewById(R.id.botonsuma);
         restador=findViewById(R.id.botonresta);
