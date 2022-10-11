@@ -1,4 +1,4 @@
-package com.example.pmdm_2223;
+package com.example.pmdm_2223.prueba_edittext;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.pmdm_2223.R;
 
 public class pruebaEditText extends AppCompatActivity {
 
