@@ -14,8 +14,6 @@ public class practicnose extends AppCompatActivity {
     ImageButton piedra, papel, tijera;
     Button reset;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,43 +30,19 @@ public class practicnose extends AppCompatActivity {
         View.OnClickListener manejador= new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String maquina = IAmaquina();
+                int maquina = iaMaquina();
                 String id=view.getResources().getResourceEntryName(view.getId());
                 switch (id){
                     case "botonPiedra":
-                      PPT(id,maquina,resultado);
+                      PPT(1,maquina,resultado);
                     break;
                 }
             }
         };
         piedra.setOnClickListener(manejador);
+        papel.setOnClickListener(manejador);
+        tijera.setOnClickListener(manejador);
     }
-    protected String IAmaquina (){
-        int objeto= (int) (Math.random()*3)+1;
-        if (objeto == 1) {
-            return "piedra";
-        }
-        if (objeto == 2) {
-            return "tijera";
-        }
-        if (objeto == 3) {
-            return "papel";
-        }
-        return null;
-
-    }
-    protected void PPT (String Y, String m, TextView r ){
-        if (Y.equalsIgnoreCase(m)) {
-            r.setText("Ha habido un empate");
-
-        } else if (Y.equalsIgnoreCase("botonPiedra") && m.equalsIgnoreCase("tijera")){
-            r.setText("Has Ganado");
-            } else if (Y.equalsIgnoreCase("botonPapel") && m.equalsIgnoreCase("piedra")) {
-            r.setText("Has Ganado");
-                }  else if (Y.equalsIgnoreCase("botonTijera") && m.equalsIgnoreCase("papel")) {
-            r.setText("Has Ganado");
-                    }  else  {
-                        r.setText("Has Perdido");
-        }
-    }
+    protected int iaMaquina (){return (int) (Math.random()*3)+1;}
+    protected void PPT (int y, int m, TextView r ){}
 }
