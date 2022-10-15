@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PMDM2223"
         tools:targetApi="31">
         <activity
-            android:name=".practicnose"
+            android:name=".piedrapapeltijera.PracticaPiedraPapelTijera"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,8 +27,6 @@
         <activity
             android:name=".prueba_edittext.pruebaEditText"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
