@@ -1,16 +1,63 @@
 package com.example.pmdm_2223.piedrapapeltijera;
 
 import android.view.View;
+import android.widget.TextView;
 
 public class Manejador implements View.OnClickListener {
+    Player jugador;
+    IAMaquina maquina;
+    String id;
+    TextView resultado, resultadoYo, resultadoM;
+
+    public Manejador(TextView resultado,TextView resultadoYo,TextView resultadoM,
+                     Player jugador, IAMaquina maquina) {
+        this.resultado=resultado;
+        this.jugador=jugador;
+        this.maquina=maquina;
+        this.resultadoYo=resultadoYo;
+        this.resultadoM=resultadoM;
+    }
+
     @Override
     public void onClick(View view) {
-
-        String id=view.getResources().getResourceEntryName(view.getId());
+        id=view.getResources().getResourceEntryName(view.getId());
         switch (id){
             case "botonPiedra":
-
+                jugador.setJugada(1);
                 break;
         }
+        maquina.setJugada(maquina.randomMaquina());
+
+        switch (resultado()){
+            case 1:
+                resultado.setText("TU GANAS, MAQUINA PIERDE");
+                jugador.gana();
+                maquina.pierde();
+                resultadoYo.setText(String.valueOf(jugador.getPuntuación()));
+                resultadoM.setText(String.valueOf(maquina.getPuntuación()));
+                break;
+            case 2:
+                resultado.setText("TU PIERDES, MAQUINA GANA");
+                maquina.setPuntuación(maquina.gana());
+                jugador.setPuntuación(jugador.pierde());
+                resultadoYo.setText(String.valueOf(jugador.getPuntuación()));
+                resultadoM.setText(String.valueOf(maquina.getPuntuación()));
+                break;
+            case 3:
+                resultado.setText("EMPATE, NADIE PUNTUA");
+                break;
+        }
+    }
+
+    public int resultado(){
+        if (jugador.getJugada()==1 && maquina.getJugada()==3||
+                jugador.getJugada()==2 && maquina.getJugada()==1||
+                jugador.getJugada()==3 && maquina.getJugada()==2){
+            return 1;
+        }else if (maquina.getJugada()==1 && jugador.getJugada()==3||
+                maquina.getJugada()==2 && jugador.getJugada()==1||
+                maquina.getJugada()==3 && jugador.getJugada()==2){
+            return 2;
+        }else return 3;
     }
 }

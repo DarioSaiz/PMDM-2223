@@ -2,7 +2,13 @@ package com.example.pmdm_2223.piedrapapeltijera;
 
 public class IAMaquina {
 
-    int puntuación;
+    int puntuación, jugada;
+
+    public int getJugada() {return jugada;}
+
+    public void setJugada(int jugada) {this.jugada = jugada;}
+
+    public IAMaquina(int puntuación) {this.puntuación = puntuación;}
 
     public int getPuntuación() {
         return puntuación;
@@ -11,6 +17,7 @@ public class IAMaquina {
     public void setPuntuación(int puntuación) {
         this.puntuación = puntuación;
     }
+
     public int gana(){
         return puntuación++;
     }
@@ -18,5 +25,6 @@ public class IAMaquina {
     public int pierde(){
         return puntuación--;
     }
+
     protected int randomMaquina (){return (int) (Math.random()*3)+1;}
 }

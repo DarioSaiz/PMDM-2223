@@ -8,22 +8,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.pmdm_2223.R;
-import com.example.pmdm_2223.piedrapapeltijera.Manejador;
 
 public class PracticaPiedraPapelTijera extends AppCompatActivity {
-    enum Level {
-        LOW,
-        MEDIUM,
-        HIGH
-    }
+
     TextView resultado, resultadoYo, resultadoM;
     ImageButton piedra, papel, tijera;
     Button reset;
+    Player jugador;
+    IAMaquina maquina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practicapiedrapapeltijera);
+
+        jugador = new Player(0);
+        maquina=new IAMaquina(0);
 
         resultado=findViewById(R.id.resultado);
         resultadoYo=findViewById(R.id.marcadorYo);
@@ -33,7 +33,7 @@ public class PracticaPiedraPapelTijera extends AppCompatActivity {
         tijera=findViewById(R.id.botonTijera);
         reset=findViewById(R.id.botonReset);
 
-        Manejador manejador= new Manejador();
+        Manejador manejador= new Manejador(resultado, resultadoYo, resultadoM, jugador, maquina);
 
         piedra.setOnClickListener(manejador);
         papel.setOnClickListener(manejador);
