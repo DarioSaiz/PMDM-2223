@@ -29,23 +29,8 @@ public class Manejador implements View.OnClickListener {
         maquina.setJugada(maquina.randomMaquina());
 
         switch (resultado()){
-            case 1:
-                resultado.setText("TU GANAS, MAQUINA PIERDE");
-                jugador.gana();
-                maquina.pierde();
-                resultadoYo.setText(String.valueOf(jugador.getPuntuación()));
-                resultadoM.setText(String.valueOf(maquina.getPuntuación()));
-                break;
-            case 2:
-                resultado.setText("TU PIERDES, MAQUINA GANA");
-                maquina.setPuntuación(maquina.gana());
-                jugador.setPuntuación(jugador.pierde());
-                resultadoYo.setText(String.valueOf(jugador.getPuntuación()));
-                resultadoM.setText(String.valueOf(maquina.getPuntuación()));
-                break;
-            case 3:
-                resultado.setText("EMPATE, NADIE PUNTUA");
-                break;
+
+
         }
     }
 
