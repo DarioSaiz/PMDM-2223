@@ -1,4 +1,4 @@
-package com.example.pmdm_2223.piedrapapeltijera;
+package com.example.pmdm_2223.EVA1.piedrapapeltijera;
 
 import android.view.View;
 import android.widget.TextView;

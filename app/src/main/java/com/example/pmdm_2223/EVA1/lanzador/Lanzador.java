@@ -1,4 +1,4 @@
-package com.example.pmdm_2223.lanzador;
+package com.example.pmdm_2223.EVA1.lanzador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.pmdm_2223.R;
 

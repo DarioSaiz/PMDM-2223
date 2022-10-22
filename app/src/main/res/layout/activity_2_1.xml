@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".practica_2_1.MainContador">
+    tools:context=".EVA1.practica_2_1.MainContador">
 
     <LinearLayout
         android:layout_width="match_parent"

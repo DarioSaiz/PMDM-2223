@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".lanzador.Lanzador">
+    tools:context=".EVA1.lanzador.Lanzador">
 
     <Button
         android:id="@+id/ut03lanzador"

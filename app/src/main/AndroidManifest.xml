@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PMDM2223"
         tools:targetApi="31">
         <activity
-            android:name=".txi.Viaje"
+            android:name=".EVA1.txi.EnvioViaje"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -25,37 +25,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".lanzador.ut03Receptora"
+            android:name=".EVA1.lanzador.ut03Receptora"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".lanzador.Lanzador"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-
-
-        </activity>
-        <activity
-            android:name=".practicnose"
+            android:name=".EVA1.lanzador.Lanzador"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".prueba_edittext.pruebaEditText"
+            android:name=".EVA1.prueba_edittext.pruebaEditText"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".practica_2_1.MainContador"
+            android:name=".EVA1.practica_2_1.MainContador"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
