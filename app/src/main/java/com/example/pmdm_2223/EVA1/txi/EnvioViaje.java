@@ -2,8 +2,10 @@ package com.example.pmdm_2223.EVA1.txi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -11,20 +13,28 @@ import android.widget.TextView;
 
 import com.example.pmdm_2223.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class EnvioViaje extends AppCompatActivity {
     TextView switchI, switchV;
     EditText horaIda, horaVuelta, fechaIda,fechaVuelta, DNI, direccionRecogida, nombre;
     Spinner ciudadesO, ciudadesD;
     Switch switchIdaVuelta;
+    Button enviar;
+    Viajero viajero=new Viajero();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envioviaje);
 
-        horaIda=findViewById(R.id.fechaIda);
+        horaIda=findViewById(R.id.horaIda);
         horaVuelta=findViewById(R.id.horaVuelta);
-        fechaIda=findViewById(R.id.horaIda);
+        fechaIda=findViewById(R.id.fechaIda);
         fechaVuelta=findViewById(R.id.fechaVuelta);
         DNI=findViewById(R.id.vDNI);
         direccionRecogida=findViewById(R.id.vDireccion);
@@ -34,6 +44,7 @@ public class EnvioViaje extends AppCompatActivity {
         switchIdaVuelta=findViewById(R.id.switchIdaVuelta);
         switchI=findViewById(R.id.switchIda);
         switchV=findViewById(R.id.switchVuelta);
+        enviar=findViewById(R.id.envioViaje);
 
         switchIdaVuelta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +63,79 @@ public class EnvioViaje extends AppCompatActivity {
             }
         });
 
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+                    String nombreV= String.valueOf(nombre.getText());
+                    String direccion= String.valueOf(direccionRecogida.getText());
+                    String DNIv= String.valueOf(DNI.getText());
+                    String ciudadOrigenv=ciudadesO.getSelectedItem().toString();
+                    String ciudadDestinov=ciudadesD.getSelectedItem().toString();
+                    String horaIdav= String.valueOf(horaIda.getText());
+                    Date fechaIdav=sdformat.parse(String.valueOf(fechaIda.getText()));
+                    Date fechaVueltav;
+                    String horaVueltav;
 
+                    Boolean fechasValidadas;
+                    Boolean DNIValidado=validadoDNI(DNIv);
+                    Boolean ciudadesValidadas=validadoCiudades(ciudadOrigenv,ciudadDestinov);
 
+                    if (!DNIValidado) {
+                        DNI.setText("DNI NO VALIDO");
+                    }
 
+                    if (switchIdaVuelta.isChecked()) {
+
+                        horaVueltav= String.valueOf(horaVuelta.getText());
+                        fechaVueltav=sdformat.parse(String.valueOf(fechaVuelta.getText()));
+                        fechasValidadas=validadoFechas(fechaIdav,fechaVueltav );
+                        if (!fechasValidadas) {
+                            fechaIda.setText("ERROR DE FECHAS");
+                            fechaVuelta.setText("ERROR DE FECHAS");
+                        }
+                        if ( DNIValidado && fechasValidadas && ciudadesValidadas) {
+                            viajero=new Viajero(nombreV, direccion, DNIv,ciudadOrigenv,ciudadDestinov,horaIdav,horaVueltav,fechaIdav,fechaVueltav);
+                            viajero.setIdavuelta(true);
+                            lanzar();
+                        }
+                    }else{
+                        if ( DNIValidado && ciudadesValidadas) {
+                            viajero=new Viajero(nombreV, direccion, DNIv,ciudadOrigenv,ciudadDestinov,horaIdav,fechaIdav);
+                            lanzar();
+                        }
+                    }
+
+                } catch (ParseException e) {}
+            }
+        });
+    }
+
+    void lanzar(){
+        Intent intento = new Intent(this, ReciboViaje.class);
+        intento.putExtra("ENVIO",viajero);
+        startActivity(intento);
+    }
+
+    public boolean validadoCiudades(String ciudadOrigenv, String ciudadDestinov){
+        if (ciudadOrigenv.equals(ciudadDestinov)) {
+            return false;
+        }else return true;
+    }
+
+    public boolean validadoFechas(Date d1, Date d2){
+        if(d1.compareTo(d2) < 0) {
+            return true;
+        }else
+            return false;
+    }
+
+    public boolean validadoDNI(String DNIv){
+        Pattern pat = Pattern.compile("[0-9]{7,8}[A-Z a-z]");
+        Matcher mat = pat.matcher(DNIv);
+        if (mat.matches()) {
+            return true;
+        }else return false;
     }
 }
