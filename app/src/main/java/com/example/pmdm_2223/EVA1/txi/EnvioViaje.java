@@ -2,10 +2,12 @@ package com.example.pmdm_2223.EVA1.txi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -62,7 +64,22 @@ public class EnvioViaje extends AppCompatActivity {
                 }
             }
         });
+        fechaIda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.fechaIda:
+                        showDatePickerDialog(fechaIda);
+                }
+            }
+        });
 
+        fechaVuelta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(fechaVuelta);
+            }
+        });
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +104,6 @@ public class EnvioViaje extends AppCompatActivity {
                     }
 
                     if (switchIdaVuelta.isChecked()) {
-
                         horaVueltav= String.valueOf(horaVuelta.getText());
                         fechaVueltav=sdformat.parse(String.valueOf(fechaVuelta.getText()));
                         fechasValidadas=validadoFechas(fechaIdav,fechaVueltav );
@@ -106,10 +122,21 @@ public class EnvioViaje extends AppCompatActivity {
                             lanzar();
                         }
                     }
-
                 } catch (ParseException e) {}
             }
         });
+    }
+
+    private void showDatePickerDialog(EditText fecha){
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + "-" + (month+1) + "-" + year;
+                fecha.setText(selectedDate);
+            }
+        });
+        newFragment.show(getSupportFragmentManager(),"datePicker");
     }
 
     void lanzar(){
