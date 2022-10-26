@@ -7,59 +7,59 @@
     tools:context=".EVA1.testLanzarEnviar.A2">
 
     <TextView
-        android:id="@+id/textoA1"
+        android:id="@+id/textoA2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar mensaje A3"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
+        app:layout_constraintBottom_toTopOf="@+id/escribirNombre2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/escribirNombre2"
         android:layout_width="700px"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/bvuelta"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/bvuelta2"
+        app:layout_constraintEnd_toStartOf="@+id/enviarA3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoA1" />
+        app:layout_constraintTop_toBottomOf="@+id/textoA2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/enviarA3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="EnviarA2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintStart_toEndOf="@+id/escribirNombre2"
+        app:layout_constraintTop_toTopOf="@+id/escribirNombre2" />
 
     <Button
-        android:id="@+id/bvuelta"
+        android:id="@+id/bvuelta2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="VOLVER"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bA1Nueva"
+        app:layout_constraintEnd_toStartOf="@+id/bA1Nueva2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/escribirNombre2" />
 
     <Button
-        android:id="@+id/bA1Nueva"
+        android:id="@+id/bA1Nueva2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="NUEVA A1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bvuelta"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintStart_toEndOf="@+id/bvuelta2"
+        app:layout_constraintTop_toBottomOf="@+id/escribirNombre2" />
 
     <Button
         android:id="@+id/breverse"
@@ -71,5 +71,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bvuelta" />
+        app:layout_constraintTop_toBottomOf="@+id/bvuelta2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
