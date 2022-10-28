@@ -22,9 +22,14 @@ public class A3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a3);
 
-        volver=findViewById(R.id.bvuelta2);
-        nueva1=findViewById(R.id.bA1Nueva2);
-        verA2=findViewById(R.id.bvuelta2);
+        volver=findViewById(R.id.bvuelta3);
+        nueva1=findViewById(R.id.bA1Nueva3);
+        verA2=findViewById(R.id.textoA3);
+
+        Intent intent =getIntent();
+        String mensahe=intent.getStringExtra((A2.ENVIOTEXT0));
+
+        verA2.setText(mensahe);
 
         volver.setOnClickListener(new View.OnClickListener() {
             @Override

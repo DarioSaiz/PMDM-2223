@@ -23,7 +23,7 @@ public class A2 extends AppCompatActivity {
     public static final int CODIGO_VUELTA_TEXTO = 3;
     public static final int CODIGO_REVERSO=4;
     public static final String MSG = "texto";
-    private static final String ENVIOTEXT0 = "nose";
+    public static final String ENVIOTEXT0 = "nose";
 
     TextView recibeA1;
     Button vuelta, nuevaA1, reverse, enviar2;
@@ -35,7 +35,7 @@ public class A2 extends AppCompatActivity {
         setContentView(R.layout.activity_a2);
 
         recibeA1=findViewById(R.id.textoA2);
-        vuelta=findViewById(R.id.bvuelta2);
+        vuelta=findViewById(R.id.bvuelta3);
         nuevaA1=findViewById(R.id.bA1Nueva2);
         reverse=findViewById(R.id.breverse);
         enviar2=findViewById(R.id.enviarA3);
