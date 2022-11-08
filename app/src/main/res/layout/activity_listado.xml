@@ -8,12 +8,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/primerRV"
-        android:layout_width="391dp"
-        android:layout_height="741dp"
+        android:layout_width="412dp"
+        android:layout_height="561dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="103dp" />
 
     <Button
         android:id="@+id/buttonLista"

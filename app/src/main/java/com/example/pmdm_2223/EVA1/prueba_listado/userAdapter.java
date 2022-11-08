@@ -23,7 +23,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
 
         public ViewHolder(View v) {
             super(v);
-            name = v.findViewById(R.id.contacto);
+            name = v.findViewById(R.id.nombreContacto);
         }
 
         public TextView getName() {
