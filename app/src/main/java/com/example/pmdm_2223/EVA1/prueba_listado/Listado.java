@@ -9,8 +9,6 @@ import android.widget.Button;
 
 import com.example.pmdm_2223.R;
 
-import java.util.List;
-
 public class Listado extends AppCompatActivity {
 
     RecyclerView rUser;
@@ -28,7 +26,7 @@ public class Listado extends AppCompatActivity {
 
         rUser.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter= new userAdapter(new Contacto().generarContactos(Contacto.CONTACTOS_INICIALES));
+        adapter= new userAdapter(new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES));
         rUser.setAdapter(adapter);
 
     }

@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
 
-    private ArrayList<Contacto> datos;
+    private ArrayList<Pokemon> datos;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -23,7 +23,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
 
         public ViewHolder(View v) {
             super(v);
-            name = v.findViewById(R.id.nombreContacto);
+            name = v.findViewById(R.id.nombrePokemon);
         }
 
         public TextView getName() {
@@ -31,7 +31,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
         }
     }
 
-    public userAdapter(Contacto[] dataSet) {
+    public userAdapter(Pokemon[] dataSet) {
         datos = new ArrayList<>();
         datos.addAll(Arrays.asList(dataSet));
     }
