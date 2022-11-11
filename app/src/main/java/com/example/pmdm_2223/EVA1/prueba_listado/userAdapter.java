@@ -1,8 +1,10 @@
 package com.example.pmdm_2223.EVA1.prueba_listado;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,16 +21,22 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView name;
+        private final TextView name, number;
+
+        private final ImageView sprite;
 
         public ViewHolder(View v) {
             super(v);
             name = v.findViewById(R.id.nombrePokemon);
+            sprite = v.findViewById(R.id.sprite);
+            number = v.findViewById(R.id.numero);
         }
 
-        public TextView getName() {
-            return name;
-        }
+        public TextView getName() {return name;}
+
+        public TextView getNumber(){return number;}
+
+        public ImageView getSprite(){return sprite;}
     }
 
     public userAdapter(Pokemon[] dataSet) {
@@ -46,6 +54,8 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.getName().setText(datos.get(position).getNombre());
+        holder.getSprite().setImageResource(datos.get(position).getSprite());
+        holder.getNumber().setText(datos.get(position).getNumero());
     }
 
     @Override

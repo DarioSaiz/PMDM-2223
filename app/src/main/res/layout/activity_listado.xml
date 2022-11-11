@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EVA1.prueba_listado.Listado">
+    tools:context=".EVA1.prueba_listado.Listado"
+    android:background="#383838">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/primerRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="13dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonLista"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/poketitulo"
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
@@ -34,12 +35,12 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="372dp"
-        android:layout_height="91dp"
+        android:id="@+id/poketitulo"
+        android:layout_width="261dp"
+        android:layout_height="84dp"
         app:layout_constraintBottom_toTopOf="@+id/primerRV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/titulo" />
+        app:srcCompat="@drawable/pokemon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
