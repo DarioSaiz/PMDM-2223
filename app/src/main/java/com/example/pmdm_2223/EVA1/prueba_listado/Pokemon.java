@@ -49,7 +49,7 @@ public class Pokemon {
     public static Pokemon[] generarPokemons(int n){
         Pokemon[] pokemons =new Pokemon[n];
         for (int i = 0; i < POKEMONS_INICIALES; i++) {
-            pokemons[i]=new Pokemon(nombres[i],sprites[i],"nº "+String.valueOf(i));
+            pokemons[i]=new Pokemon(nombres[i],sprites[i],"nº "+ i);
         }
         return pokemons;
     }
