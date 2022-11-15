@@ -3,6 +3,7 @@ package com.example.pmdm_2223.EVA1.prueba_listado;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,6 +15,8 @@ public class Listado extends AppCompatActivity {
     RecyclerView rUser;
     Button add;
     userAdapter adapter;
+    AppDatabase db;
+    PokemonDAO pokemonDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +25,18 @@ public class Listado extends AppCompatActivity {
 
         rUser=findViewById(R.id.primerRV);
 
+        db= Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class,"Pokemon").allowMainThreadQueries().build();
+
+        pokemonDAO=db.pokemonDAO();
+
         rUser.setHasFixedSize(true);
 
         rUser.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter= new userAdapter(new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES));
+        Pokemon[] pokemons=new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES);
+        adapter=new userAdapter(pokemons) ;
+        pokemonDAO.insertAll(pokemons);
         rUser.setAdapter(adapter);
-
     }
 }

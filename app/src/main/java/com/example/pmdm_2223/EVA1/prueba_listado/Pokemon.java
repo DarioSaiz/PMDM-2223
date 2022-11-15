@@ -1,8 +1,17 @@
 package com.example.pmdm_2223.EVA1.prueba_listado;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.example.pmdm_2223.R;
 
+import org.jetbrains.annotations.NotNull;
+
+@Entity(tableName = "Pokemon")
 public class Pokemon {
+
+    public static final int POKEMONS_INICIALES = 26;
 
     private static String []nombres={
             "Bulbasaur", "Ivysaur", "Venusaur", "Charmander",
@@ -22,13 +31,15 @@ public class Pokemon {
             R.drawable.p26,
     };
 
+    @ColumnInfo(name = "nombre")
     private String nombre;
 
+    @ColumnInfo()
     private int sprite;
 
+    @PrimaryKey
+    @NotNull
     private String numero;
-
-    public static final int POKEMONS_INICIALES = 26;
 
     public Pokemon() {}
 
@@ -42,9 +53,21 @@ public class Pokemon {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getNumero() {return numero;}
 
+    public void setNumero(@NotNull String numero) {
+        this.numero = numero;
+    }
+
     public int getSprite(){return sprite;}
+
+    public void setSprite(int sprite) {
+        this.sprite = sprite;
+    }
 
     public static Pokemon[] generarPokemons(int n){
         Pokemon[] pokemons =new Pokemon[n];
