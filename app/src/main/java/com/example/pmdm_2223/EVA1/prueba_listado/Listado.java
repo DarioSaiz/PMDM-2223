@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.example.pmdm_2223.R;
 
+import java.util.ArrayList;
+
 public class Listado extends AppCompatActivity {
 
     RecyclerView rUser;
@@ -36,7 +38,10 @@ public class Listado extends AppCompatActivity {
 
         Pokemon[] pokemons=new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES);
         adapter=new userAdapter(pokemons) ;
-        pokemonDAO.insertAll(pokemons);
+        ArrayList<Pokemon> comprueba = new ArrayList(pokemonDAO.getAll());
+        if (comprueba.size()==0){
+            pokemonDAO.insertAll(pokemons);
+        }
         rUser.setAdapter(adapter);
     }
 }

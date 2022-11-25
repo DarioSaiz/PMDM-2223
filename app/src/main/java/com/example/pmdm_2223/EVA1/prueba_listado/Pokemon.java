@@ -39,11 +39,11 @@ public class Pokemon {
 
     @PrimaryKey
     @NotNull
-    private String numero;
+    private int numero;
 
     public Pokemon() {}
 
-    public Pokemon(String nombre, int sprite, String numero) {
+    public Pokemon(String nombre, int sprite, int numero) {
         this.nombre = nombre;
         this.sprite=sprite;
         this.numero=numero;
@@ -57,9 +57,9 @@ public class Pokemon {
         this.nombre = nombre;
     }
 
-    public String getNumero() {return numero;}
+    public int getNumero() {return numero;}
 
-    public void setNumero(@NotNull String numero) {
+    public void setNumero(@NotNull int numero) {
         this.numero = numero;
     }
 
@@ -72,7 +72,7 @@ public class Pokemon {
     public static Pokemon[] generarPokemons(int n){
         Pokemon[] pokemons =new Pokemon[n];
         for (int i = 0; i < POKEMONS_INICIALES; i++) {
-            pokemons[i]=new Pokemon(nombres[i],sprites[i],"nº "+ i);
+            pokemons[i]=new Pokemon(nombres[i],sprites[i],i);
         }
         return pokemons;
     }

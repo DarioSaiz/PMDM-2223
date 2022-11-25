@@ -55,7 +55,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.getName().setText(datos.get(position).getNombre());
         holder.getSprite().setImageResource(datos.get(position).getSprite());
-        holder.getNumber().setText(datos.get(position).getNumero());
+        holder.getNumber().setText("Nº"+ datos.get(position).getNumero());
     }
 
     @Override
