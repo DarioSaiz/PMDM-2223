@@ -23,8 +23,6 @@ import android.widget.TextView;
 
 import com.example.pmdm_2223.R;
 
-import java.io.File;
-
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -66,7 +64,7 @@ public class MainActivity2 extends AppCompatActivity {
                     if (result.getResultCode()==RESULT_OK){
                         Intent data = result.getData();
                         uriCapturada = data.getData();
-                        imgSprite.setImageURI(Uri.fromFile(new File("/drawable/p1.png")));
+                        imgSprite.setImageURI(uriCapturada);
                     }
                 }
         );

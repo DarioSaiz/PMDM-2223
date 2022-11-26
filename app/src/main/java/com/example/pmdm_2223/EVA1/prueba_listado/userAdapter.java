@@ -65,7 +65,12 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
             /*
             * Uri imgUri=Uri.parse("android.resource://my.package.name/"+R.drawable.image);
               imageView.setImageURI(null);
-              imageView.setImageURI(imgUri);*/
+              imageView.setImageURI(imgUri);
+              *
+              * Uri imgUri=Uri.parse("android.resource://"+getPackageName()+"/drawable/"+"p1");
+                        imgSprite.setImageURI(null);
+                        imgSprite.setImageURI(imgUri);
+                        * CLAVE MUY CLAVE GUARDAS LOS SPRITES COMO NOMBRE Y SETEAS COMO URI DE ESTA FORMA*/
         }
     }
 
