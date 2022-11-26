@@ -56,6 +56,17 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
         holder.getName().setText(datos.get(position).getNombre());
         holder.getSprite().setImageResource(datos.get(position).getSprite());
         holder.getNumber().setText("Nº"+ datos.get(position).getNumero());
+        //GUARDAR URIS ES MEJOR ej: getsprite.setImageUri parsea si no tiene ruta
+        //trycatch??
+        ///drawable/p1.png
+        try {
+
+        }catch (Exception e){
+            /*
+            * Uri imgUri=Uri.parse("android.resource://my.package.name/"+R.drawable.image);
+              imageView.setImageURI(null);
+              imageView.setImageURI(imgUri);*/
+        }
     }
 
     @Override

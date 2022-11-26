@@ -36,19 +36,24 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/pokemongbraeo"
+                android:gravity="bottom"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textColor="#FFFFFF"
-                android:textSize="25dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/numero"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/pokemongbraeo"
+                android:gravity="center_vertical"
                 android:text="TextView"
                 android:textAlignment="textStart"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <ImageView

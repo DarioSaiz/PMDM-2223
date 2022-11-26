@@ -16,6 +16,9 @@ public interface PokemonDAO {
     @Query("SELECT * FROM Pokemon WHERE numero in(:pokemonNumbers)")
     List<Pokemon> loadAllByNumber(int[] pokemonNumbers);
 
+    @Query("SELECT * FROM Pokemon WHERE numero = :number")
+    Pokemon findByNumber(int number);
+
     @Query("SELECT * FROM Pokemon WHERE nombre LIKE :nombre LIMIT 1")
     Pokemon findByName(String nombre);
 

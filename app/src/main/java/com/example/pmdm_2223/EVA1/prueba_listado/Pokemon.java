@@ -8,8 +8,10 @@ import com.example.pmdm_2223.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Pokemon")
-public class Pokemon {
+public class Pokemon implements Serializable {
 
     public static final int POKEMONS_INICIALES = 26;
 
