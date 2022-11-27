@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,13 +48,10 @@ public class MainActivity2 extends AppCompatActivity {
         añadir=findViewById(R.id.subirPoke);
         imgSprite=findViewById(R.id.pokeImg);
 
-        TextView.OnEditorActionListener manejador = new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
-                return false;
-            }
+        TextView.OnEditorActionListener manejador = (textView, i, keyEvent) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+            return false;
         };
         nombre.setOnEditorActionListener(manejador);
         numero.setOnEditorActionListener(manejador);
@@ -63,8 +61,11 @@ public class MainActivity2 extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode()==RESULT_OK){
                         Intent data = result.getData();
+
                         uriCapturada = data.getData();
+                        getContentResolver().takePersistableUriPermission(uriCapturada, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         imgSprite.setImageURI(uriCapturada);
+
                     }
                 }
         );
@@ -72,9 +73,17 @@ public class MainActivity2 extends AppCompatActivity {
         imgSprite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i =new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent i =new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 i.putExtra(MediaStore.EXTRA_OUTPUT, uriCapturada);
                 imgResult.launch(i);
+            }
+        });
+
+        vuelta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_CANCELED);
+                finish();
             }
         });
 
@@ -82,16 +91,21 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (uriCapturada != null) {
-                    String pokeSprite=uriCapturada.getPath();
+                    String pokeNom=nombre.getText().toString();
+                    int pokeNum=Integer.parseInt(numero.getText().toString());
+
+                    String pokeSprite=uriCapturada.toString();
                     Log.d(TAG,"La ruta es"+pokeSprite);
+                    Pokemon nuevoPoke = new Pokemon(pokeNom,pokeSprite,pokeNum);
+
+                    Intent intent = new Intent(MainActivity2.this,Listado.class);
+                    intent.putExtra("ENVIO",nuevoPoke);
+                    setResult(CODIGO_SUBIRPOKE,intent);
+                    finish();
+                    /*if (pokeValidado(pokeNum, pokeNom)){
+
+                    }*/
                 }
-                //int pokeNum=Integer.parseInt(numero.getText().toString());
-                //String pokeNom=nombre.getText().toString();
-
-
-                /*if (pokeValidado(pokeNum, pokeNom)){
-                    //Pokemon nuevoPoke = new Pokemon(pokeNom,pokeNum);
-                }*/
             }
         });
     }

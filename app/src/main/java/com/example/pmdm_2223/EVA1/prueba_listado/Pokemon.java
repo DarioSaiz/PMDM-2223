@@ -24,20 +24,17 @@ public class Pokemon implements Serializable {
             "Pikachu", "Raichu"
     };
 
-    private static int sprites[]={
-            R.drawable.p1,R.drawable.p2,R.drawable.p3,R.drawable.p4,R.drawable.p5,
-            R.drawable.p6,R.drawable.p7,R.drawable.p8,R.drawable.p9,R.drawable.p10,
-            R.drawable.p11,R.drawable.p12,R.drawable.p13,R.drawable.p14,R.drawable.p15,
-            R.drawable.p16,R.drawable.p17,R.drawable.p18,R.drawable.p19,R.drawable.p20,
-            R.drawable.p21,R.drawable.p22,R.drawable.p23,R.drawable.p24,R.drawable.p25,
-            R.drawable.p26,
+    private static String sprites[]={
+            "p1","p2","p3","p4","p5","p6","p7","p8","p9","p10",
+            "p11","p12","p13","p14","p15","p16","p17","p18","p19","p20",
+            "p21","p22","p23","p24","p25","p26"
     };
 
     @ColumnInfo(name = "nombre")
     private String nombre;
 
-    @ColumnInfo()
-    private int sprite;
+    @ColumnInfo(name="sprite")
+    private String sprite;
 
     @PrimaryKey
     @NotNull
@@ -45,7 +42,7 @@ public class Pokemon implements Serializable {
 
     public Pokemon() {}
 
-    public Pokemon(String nombre, int sprite, int numero) {
+    public Pokemon(String nombre, String sprite, int numero) {
         this.nombre = nombre;
         this.sprite=sprite;
         this.numero=numero;
@@ -65,9 +62,9 @@ public class Pokemon implements Serializable {
         this.numero = numero;
     }
 
-    public int getSprite(){return sprite;}
+    public String getSprite(){return sprite;}
 
-    public void setSprite(int sprite) {
+    public void setSprite(String sprite) {
         this.sprite = sprite;
     }
 

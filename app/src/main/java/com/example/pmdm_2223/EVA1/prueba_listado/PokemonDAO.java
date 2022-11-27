@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -24,6 +25,9 @@ public interface PokemonDAO {
 
     @Insert
     void insertAll(Pokemon... pokemons);
+
+    @Insert
+    void insertList(ArrayList<Pokemon> pokemons);
 
     @Delete
     void delete(Pokemon pokemon);

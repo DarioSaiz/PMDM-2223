@@ -1,6 +1,10 @@
 package com.example.pmdm_2223.EVA1.prueba_listado;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +43,9 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
         public ImageView getSprite(){return sprite;}
     }
 
-    public userAdapter(Pokemon[] dataSet) {
-        datos = new ArrayList<>();
-        datos.addAll(Arrays.asList(dataSet));
+    public userAdapter(ArrayList<Pokemon> dataSet) {
+        datos =dataSet;
+        //datos.addAll(Arrays.asList(dataSet));
     }
 
     @NonNull
@@ -54,14 +58,22 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.getName().setText(datos.get(position).getNombre());
-        holder.getSprite().setImageResource(datos.get(position).getSprite());
-        holder.getNumber().setText("Nº"+ datos.get(position).getNumero());
+        //holder.getSprite().setImageResource(datos.get(position).getSprite());
+        holder.getNumber().setText("Nº" + datos.get(position).getNumero());
         //GUARDAR URIS ES MEJOR ej: getsprite.setImageUri parsea si no tiene ruta
         //trycatch??
         ///drawable/p1.png
-        try {
+        Uri uriSprite = null;
 
-        }catch (Exception e){
+        if (position<26){
+            uriSprite = Uri.parse("android.resource://" + Listado.package_name + "/drawable/" +
+                    datos.get(position).getSprite());
+        }else{
+            Log.d(TAG, datos.get(position).getSprite());
+            uriSprite = Uri.parse(datos.get(position).getSprite());
+        }
+
+        holder.getSprite().setImageURI(uriSprite);
             /*
             * Uri imgUri=Uri.parse("android.resource://my.package.name/"+R.drawable.image);
               imageView.setImageURI(null);
@@ -71,7 +83,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
                         imgSprite.setImageURI(null);
                         imgSprite.setImageURI(imgUri);
                         * CLAVE MUY CLAVE GUARDAS LOS SPRITES COMO NOMBRE Y SETEAS COMO URI DE ESTA FORMA*/
-        }
+
     }
 
     @Override

@@ -18,8 +18,13 @@ import android.widget.Button;
 import com.example.pmdm_2223.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Listado extends AppCompatActivity {
+
+    public static String package_name;
+
+    public ArrayList<Pokemon> pokemons;
 
     RecyclerView rUser;
     Button add;
@@ -31,6 +36,8 @@ public class Listado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
+
+        package_name=getApplicationContext().getPackageName();
 
         rUser=findViewById(R.id.primerRV);
         add = findViewById(R.id.addPoke);
@@ -44,12 +51,14 @@ public class Listado extends AppCompatActivity {
 
         rUser.setLayoutManager(new LinearLayoutManager(this));
 
-        Pokemon[] pokemons=new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES);
-        adapter=new userAdapter(pokemons) ;
-        ArrayList<Pokemon> comprueba = new ArrayList(pokemonDAO.getAll());
-        if (comprueba.size()==0){
-            pokemonDAO.insertAll(pokemons);
+        pokemons=new ArrayList(pokemonDAO.getAll());
+
+        if (pokemons.size()==0){
+            pokemons= new ArrayList<>(Arrays.asList(new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES)));
+            pokemonDAO.insertList(pokemons);
         }
+
+        adapter=new userAdapter(pokemons);
         rUser.setAdapter(adapter);
 
         ActivityResultLauncher miResultadoLauncher = registerForActivityResult(
@@ -61,7 +70,14 @@ public class Listado extends AppCompatActivity {
                             break;
                         case MainActivity2.CODIGO_SUBIRPOKE:
                                 Log.d(TAG,"Se ha recibido un pokemon");
-                                Intent intent = result.getData();
+                                Intent data = result.getData();
+
+                            Pokemon nuevoPoke = (Pokemon)data.getSerializableExtra("ENVIO");
+                                Log.d("TAG",nuevoPoke.getSprite());
+                                pokemons.add(nuevoPoke);
+                                pokemonDAO.insertAll(nuevoPoke);
+                                adapter=new userAdapter(pokemons);
+                                rUser.setAdapter(adapter);
                             break;
                     }
                 });
