@@ -2,7 +2,6 @@ package com.example.pmdm_2223.EVA1.prueba_listado;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,13 +16,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pmdm_2223.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
 
     private ArrayList<Pokemon> datos;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public interface RecyclerViewClickListener{
+        void onClick(View v,int position);
+    }
+
+    private static RecyclerViewClickListener listener;
+
+    public userAdapter(ArrayList<Pokemon> dataSet,RecyclerViewClickListener listener) {
+        datos =dataSet;
+        this.listener=listener;
+        //datos.addAll(Arrays.asList(dataSet));
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TextView name, number;
 
@@ -31,6 +41,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
 
         public ViewHolder(View v) {
             super(v);
+            v.setOnClickListener(this);
             name = v.findViewById(R.id.nombrePokemon);
             sprite = v.findViewById(R.id.sprite);
             number = v.findViewById(R.id.numero);
@@ -41,11 +52,11 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder>{
         public TextView getNumber(){return number;}
 
         public ImageView getSprite(){return sprite;}
-    }
 
-    public userAdapter(ArrayList<Pokemon> dataSet) {
-        datos =dataSet;
-        //datos.addAll(Arrays.asList(dataSet));
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view,getAdapterPosition());
+        }
     }
 
     @NonNull

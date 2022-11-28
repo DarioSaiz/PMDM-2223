@@ -32,9 +32,10 @@ public class MainActivity2 extends AppCompatActivity {
     private Uri uriCapturada;
 
     EditText nombre, numero;
-    Button vuelta, añadir;
+    Button vuelta, añadir, eliminar;
     PokemonDAO pokeDAO;
     ImageView imgSprite;
+    PokemonDAO pokemonDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,16 @@ public class MainActivity2 extends AppCompatActivity {
         vuelta=findViewById(R.id.pokeAtras);
         añadir=findViewById(R.id.subirPoke);
         imgSprite=findViewById(R.id.pokeImg);
+        eliminar=findViewById(R.id.eliminarPoke);
+
+        Pokemon pokemon = (Pokemon)getIntent().getSerializableExtra("ENVIO");
+
+        if (pokemon!=null){
+            Log.d(TAG,"El pokemon es nulo");
+
+            eliminar.setVisibility(View.VISIBLE);
+            añadir.setVisibility(View.INVISIBLE);
+        }
 
         TextView.OnEditorActionListener manejador = (textView, i, keyEvent) -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -97,7 +108,7 @@ public class MainActivity2 extends AppCompatActivity {
                     String pokeSprite=uriCapturada.toString();
                     Log.d(TAG,"La ruta es"+pokeSprite);
                     Pokemon nuevoPoke = new Pokemon(pokeNom,pokeSprite,pokeNum);
-
+                    pokemonDAO.insertAll(nuevoPoke);
                     Intent intent = new Intent(MainActivity2.this,Listado.class);
                     intent.putExtra("ENVIO",nuevoPoke);
                     setResult(CODIGO_SUBIRPOKE,intent);
@@ -108,8 +119,14 @@ public class MainActivity2 extends AppCompatActivity {
                 }
             }
         });
-    }
 
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
     public boolean pokeValidado(int pokeNum, String pokeNom){
         Pokemon pokeTemp= pokeDAO.findByNumber(pokeNum);
         return false;

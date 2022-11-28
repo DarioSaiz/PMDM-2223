@@ -31,6 +31,7 @@ public class Listado extends AppCompatActivity {
     userAdapter adapter;
     AppDatabase db;
     PokemonDAO pokemonDAO;
+    private userAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +55,10 @@ public class Listado extends AppCompatActivity {
         pokemons=new ArrayList(pokemonDAO.getAll());
 
         if (pokemons.size()==0){
-            pokemons= new ArrayList<>(Arrays.asList(new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES)));
+            pokemons= new ArrayList<>(
+                    Arrays.asList(new Pokemon().generarPokemons(Pokemon.POKEMONS_INICIALES)));
             pokemonDAO.insertList(pokemons);
         }
-
-        adapter=new userAdapter(pokemons);
-        rUser.setAdapter(adapter);
 
         ActivityResultLauncher miResultadoLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), result ->{
@@ -71,23 +70,31 @@ public class Listado extends AppCompatActivity {
                         case MainActivity2.CODIGO_SUBIRPOKE:
                                 Log.d(TAG,"Se ha recibido un pokemon");
                                 Intent data = result.getData();
-
-                            Pokemon nuevoPoke = (Pokemon)data.getSerializableExtra("ENVIO");
+                                Pokemon nuevoPoke = (Pokemon)data.getSerializableExtra("ENVIO");
                                 Log.d("TAG",nuevoPoke.getSprite());
                                 pokemons.add(nuevoPoke);
-                                pokemonDAO.insertAll(nuevoPoke);
-                                adapter=new userAdapter(pokemons);
+                                adapter=new userAdapter(pokemons,listener);
                                 rUser.setAdapter(adapter);
                             break;
                     }
                 });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Listado.this,MainActivity2.class);
-                miResultadoLauncher.launch(intent);
-            }
+        setOnClickListener(miResultadoLauncher);
+
+        adapter=new userAdapter(pokemons, listener);
+        rUser.setAdapter(adapter);
+
+        add.setOnClickListener(view -> {
+            Intent intent = new Intent(Listado.this,MainActivity2.class);
+            miResultadoLauncher.launch(intent);
         });
+    }
+
+    private void setOnClickListener(ActivityResultLauncher miResultadoLauncher){
+        listener= (v, position) -> {
+            //Iniciar actividad enviando el pokemon a editar, añadir el boton de guardar.
+            Intent intent = new Intent(Listado.this,MainActivity2.class);
+            miResultadoLauncher.launch(intent);
+        };
     }
 }
