@@ -166,4 +166,21 @@ public class EnvioViaje extends AppCompatActivity {
             return true;
         }else return false;
     }
+
+    /*
+    * eHora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        eHora.setText(String.format("%02d:%02d", hourOfDay, minutes));
+                    }
+                }, 0, 0, false);
+                timePickerDialog.show();
+            }
+        });
+    *
+    *   Devuelve un string con la hora.
+    * */
 }
