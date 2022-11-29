@@ -161,6 +161,7 @@ public class EnvioViaje extends AppCompatActivity {
     public boolean validadoDNI(String DNIv){
         Pattern pat = Pattern.compile("[0-9]{7,8}[A-Z a-z]");
         Matcher mat = pat.matcher(DNIv);
+        //email ^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$
         if (mat.matches()) {
             return true;
         }else return false;
