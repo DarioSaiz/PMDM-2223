@@ -73,6 +73,7 @@ public class Listado extends AppCompatActivity {
                                 Pokemon nuevoPoke = (Pokemon)data.getSerializableExtra("ENVIO");
                                 Log.d("TAG",nuevoPoke.getSprite());
                                 pokemons.add(nuevoPoke);
+                                pokemonDAO.insertAll(nuevoPoke);
                                 adapter=new userAdapter(pokemons,listener);
                                 rUser.setAdapter(adapter);
                             break;
@@ -93,7 +94,9 @@ public class Listado extends AppCompatActivity {
     private void setOnClickListener(ActivityResultLauncher miResultadoLauncher){
         listener= (v, position) -> {
             //Iniciar actividad enviando el pokemon a editar, añadir el boton de guardar.
+            Pokemon pokeEnvio=pokemons.get(position);
             Intent intent = new Intent(Listado.this,MainActivity2.class);
+            intent.putExtra("ENVIO",pokeEnvio);
             miResultadoLauncher.launch(intent);
         };
     }

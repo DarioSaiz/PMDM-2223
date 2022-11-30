@@ -54,9 +54,12 @@ public class MainActivity2 extends AppCompatActivity {
 
         if (pokemon!=null){
             Log.d(TAG,"El pokemon es nulo");
-
             eliminar.setVisibility(View.VISIBLE);
             añadir.setVisibility(View.INVISIBLE);
+
+            nombre.setText(pokemon.getNombre());
+            numero.setText(String.valueOf(pokemon.getNumero()));
+            imgSprite.setImageURI(Uri.parse(pokemon.getSprite()));
         }
 
         TextView.OnEditorActionListener manejador = (textView, i, keyEvent) -> {
@@ -108,7 +111,6 @@ public class MainActivity2 extends AppCompatActivity {
                     String pokeSprite=uriCapturada.toString();
                     Log.d(TAG,"La ruta es"+pokeSprite);
                     Pokemon nuevoPoke = new Pokemon(pokeNom,pokeSprite,pokeNum);
-                    pokemonDAO.insertAll(nuevoPoke);
                     Intent intent = new Intent(MainActivity2.this,Listado.class);
                     intent.putExtra("ENVIO",nuevoPoke);
                     setResult(CODIGO_SUBIRPOKE,intent);
@@ -123,7 +125,10 @@ public class MainActivity2 extends AppCompatActivity {
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int numero1=Integer.parseInt(String.valueOf(numero.getText()));
+                Pokemon poke = pokeDAO.findByNumber(numero1);
+                pokeDAO.delete(poke);
+                finish();
             }
         });
     }

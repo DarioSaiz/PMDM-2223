@@ -81,7 +81,9 @@
         android:id="@+id/eliminarPoke"
         android:layout_width="161dp"
         android:layout_height="75dp"
-        android:text="Button"
+        android:fontFamily="@font/pokemonunowngb"
+        android:text="eliminar"
+        android:textAllCaps="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,4 +91,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.899" />
+
+    <Button
+        android:id="@+id/editarPoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pokemonunowngb"
+        android:text="guardar"
+        android:textAllCaps="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokeAtras" />
 </androidx.constraintlayout.widget.ConstraintLayout>
