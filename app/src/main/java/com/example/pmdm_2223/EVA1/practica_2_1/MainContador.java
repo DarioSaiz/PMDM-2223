@@ -19,7 +19,7 @@ public class MainContador extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2_1);
+        setContentView(R.layout.eva1_2_1);
 
         sumador=findViewById(R.id.botonsuma);
         restador=findViewById(R.id.botonresta);
