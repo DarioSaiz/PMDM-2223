@@ -63,8 +63,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         public void onClick(View view) {
             int n = cantidadlista.get(getAdapterPosition());
             cantidadlista.set(getAdapterPosition(),n+1);
-            int total = cantidadlista.get(getAdapterPosition());
-            cantidad.setText(String.valueOf(total));
+            n = cantidadlista.get(getAdapterPosition());
+            cantidad.setText(String.valueOf(n));
             // Si tengo un manejador de evento lo propago con el índice
             if (clickListener != null){
                 clickListener.onClick(view, datos.get(getAdapterPosition()));
@@ -113,6 +113,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
 
     public void add(ArrayList<Producto> dataSet){
         datos.addAll(dataSet);
+        addZeros();
         notifyDataSetChanged();
     }
 
