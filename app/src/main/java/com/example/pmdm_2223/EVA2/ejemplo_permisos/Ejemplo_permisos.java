@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,7 +18,9 @@ import com.example.pmdm_2223.R;
 
 public class Ejemplo_permisos extends AppCompatActivity {
 
-    ActivityResultLauncher<String> requestPermissionLauncher;
+    //Nose si se puede hacer de una con un launcher
+    ActivityResultLauncher<String> requestPermissionLauncherLlamadas;
+    ActivityResultLauncher<String> requestPermissionLauncherCamara;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +30,26 @@ public class Ejemplo_permisos extends AppCompatActivity {
         // Register the permissions callback, which handles the user's response to the
         // system permissions dialog. Save the return value, an instance of
         // ActivityResultLauncher, as an instance variable.
-        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+        requestPermissionLauncherLlamadas = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             if (isGranted) {
                 // Permission is granted. Continue the action or workflow in your
                 // app.
                 llamar();
+            } else {
+                // Explain to the user that the feature is unavailable because the
+                // feature requires a permission that the user has denied. At the
+                // same time, respect the user's decision. Don't link to system
+                // settings in an effort to convince the user to change their
+                // decision.
+                Toast.makeText(this, "Necesitamos permiso para llamar", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requestPermissionLauncherCamara = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                // Permission is granted. Continue the action or workflow in your
+                // app.
+                fotiyo();
             } else {
                 // Explain to the user that the feature is unavailable because the
                 // feature requires a permission that the user has denied. At the
@@ -68,7 +86,22 @@ public class Ejemplo_permisos extends AppCompatActivity {
         } else {
             // You can directly ask for the permission.
             // The registered ActivityResultCallback gets the result of this request.
-            requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE);
+            requestPermissionLauncherLlamadas.launch(Manifest.permission.CALL_PHONE);
         }
+    }
+    public void cameraClick(View v){
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==
+            PackageManager.PERMISSION_GRANTED){
+            fotiyo();
+        }else if (false){
+
+        }else{
+            requestPermissionLauncherLlamadas.launch(Manifest.permission.CAMERA);
+        }
+    }
+
+    private void fotiyo() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivity(cameraIntent);
     }
 }

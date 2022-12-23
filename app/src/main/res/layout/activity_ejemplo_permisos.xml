@@ -22,6 +22,7 @@
         android:id="@+id/ejCamara"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="cameraClick"
         android:text="camara"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
