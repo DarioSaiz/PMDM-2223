@@ -96,7 +96,7 @@ public class Ejemplo_permisos extends AppCompatActivity {
         }else if (false){
 
         }else{
-            requestPermissionLauncherLlamadas.launch(Manifest.permission.CAMERA);
+            requestPermissionLauncherCamara.launch(Manifest.permission.CAMERA);
         }
     }
 
