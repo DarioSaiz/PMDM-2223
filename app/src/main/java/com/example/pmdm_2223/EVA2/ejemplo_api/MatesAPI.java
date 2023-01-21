@@ -27,4 +27,12 @@ public class MatesAPI {
     public Call<Resultado> suma(int n1, int n2){
         return service.suma(n1, n2);
     }
+
+    public Call<Resultado> resta(int n1, int n2){
+        return service.resta(n1, n2);
+    }
+
+    public Call<Resultado> multiplicacion(int n1, int n2){return service.multiplicacion(n1, n2);}
+
+    public Call<Resultado> division(int n1, int n2){return service.division(n1, n2);}
 }
