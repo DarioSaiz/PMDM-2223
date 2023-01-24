@@ -37,7 +37,7 @@ public class EjemploObservador extends AppCompatActivity {
                 int cont = Integer.parseInt((total.getText().toString()));
                 cont++;
                 total.setText(String.valueOf(cont));
-                Toast.makeText(EjemploObservador.this,"Pulsado "+p.getNombre(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }

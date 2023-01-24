@@ -1,5 +1,7 @@
 package com.example.pmdm_2223.EVA2.retrofit_listview;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -7,9 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.pmdm_2223.EVA2.ejemplo_observador.EjemploObservador;
 import com.example.pmdm_2223.EVA2.retrofit_listview.data.Volume;
 import com.example.pmdm_2223.EVA2.retrofit_listview.data.VolumesResponse;
 import com.example.pmdm_2223.R;
@@ -35,6 +41,13 @@ public class ProyectoLibreria extends AppCompatActivity {
         BookSearchResultsAdapter adapter = new BookSearchResultsAdapter();
         lista.setLayoutManager(new LinearLayoutManager(this));
         lista.setAdapter(adapter);
+
+        adapter.setClickListener(new BookSearchResultsAdapter.ItemClickListener() {
+            @Override
+            public void onClick(View view, String v) {
+                Toast.makeText(ProyectoLibreria.this,"Pulsado "+ v, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         vm = new ViewModelProvider(this).get(BookSearchViewModel.class);
         vm.init();
