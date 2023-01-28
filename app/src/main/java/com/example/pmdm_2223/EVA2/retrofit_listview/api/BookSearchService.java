@@ -12,4 +12,10 @@ public interface BookSearchService {
             @Query("q") String query,
             @Query("inauthor") String author
     );
+    @GET("/books/v1/volumes")
+    Call<VolumesResponse> extendVolumes(
+            @Query("q") String query,
+            @Query("inauthor") String author,
+            @Query("maxResults") int size
+    );
 }

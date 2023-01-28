@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class ProyectoLibreria extends AppCompatActivity {
     RecyclerView lista;
     BookSearchViewModel vm;
     LiveData<VolumesResponse> data;
+    ProgressBar pg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +40,13 @@ public class ProyectoLibreria extends AppCompatActivity {
         autor = findViewById(R.id.id_autor);
         buscar = findViewById(R.id.id_buscar);
         lista = findViewById(R.id.id_lista_libros);
+        pg = findViewById(R.id.id_libros_progressBar);
+
+        pg.setVisibility(View.INVISIBLE);
 
         BookSearchResultsAdapter adapter = new BookSearchResultsAdapter();
         lista.setLayoutManager(new LinearLayoutManager(this));
         lista.setAdapter(adapter);
-
-        adapter.setClickListener(new BookSearchResultsAdapter.ItemClickListener() {
-            @Override
-            public void onClick(View view, String v) {
-                Toast.makeText(ProyectoLibreria.this,"Pulsado "+ v, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         vm = new ViewModelProvider(this).get(BookSearchViewModel.class);
         vm.init();
@@ -56,8 +55,27 @@ public class ProyectoLibreria extends AppCompatActivity {
             adapter.setResults(dato.getItems());
         });
 
+        adapter.setClickListener((view, v) ->{
+            Toast.makeText(ProyectoLibreria.this,"Pulsado "+ v, Toast.LENGTH_SHORT).show();
+        });
+
+        lista.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int total = layoutManager.getItemCount();
+                int ultimoVisible = layoutManager.findLastVisibleItemPosition();
+                Log.d(TAG,String.valueOf(ultimoVisible));
+                if (total == (ultimoVisible + 1)) {
+                    vm.extendVolumes(busqueda.getText().toString(),autor.getText().toString(),total+10);
+                }
+            }
+        });
+
         buscar.setOnClickListener(view -> {
+            pg.setVisibility(View.VISIBLE);
             vm.searchVolumes(busqueda.getText().toString(),autor.getText().toString());
+            pg.setVisibility(View.INVISIBLE);
         });
     }
 }

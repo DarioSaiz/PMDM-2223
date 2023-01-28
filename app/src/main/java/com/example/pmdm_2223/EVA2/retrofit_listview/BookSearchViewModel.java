@@ -26,6 +26,10 @@ public class BookSearchViewModel extends AndroidViewModel {
         bookRepository.searchVolumes(keyword, author);
     }
 
+    public void extendVolumes(String keyword, String author, int maxResults){
+        bookRepository.extendVolumes(keyword, author, maxResults);
+    }
+
     public LiveData<VolumesResponse> getVolumesResponseLiveData() {
         return volumesResponseLiveData;
     }

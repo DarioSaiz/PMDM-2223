@@ -1,5 +1,10 @@
 package com.example.pmdm_2223.EVA2.retrofit_listview.api;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.ContentValues;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -33,6 +38,25 @@ public class BookRepository {
                     @Override
                     public void onResponse(Call<VolumesResponse> call, Response<VolumesResponse> response) {
                         if (response.body() != null) {
+                            Log.d(TAG,"BUSCANDO DATA 1");
+                            volumesResponseLiveData.postValue(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<VolumesResponse> call, Throwable t) {
+                        volumesResponseLiveData.postValue(null);
+                    }
+                });
+    }
+
+    public void extendVolumes(String keyword, String author, int i) {
+        bookSearchService.extendVolumes(keyword, author, i)
+                .enqueue(new Callback<VolumesResponse>() {
+                    @Override
+                    public void onResponse(Call<VolumesResponse> call, Response<VolumesResponse> response) {
+                        if (response.body() != null) {
+                            Log.d(TAG,"BUSCANDO DATA 2");
                             volumesResponseLiveData.postValue(response.body());
                         }
                     }
