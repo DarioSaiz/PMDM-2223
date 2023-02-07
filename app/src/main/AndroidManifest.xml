@@ -20,6 +20,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Auth_detalle"
+            android:exported="false" />
+        <activity
+            android:name=".Auth_lista"
+            android:exported="false" />
+        <activity
+            android:name=".Auth_main"
+            android:exported="false" />
+        <activity
             android:name=".DetalleVolumen"
             android:exported="false">
             <meta-data
