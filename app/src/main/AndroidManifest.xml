@@ -20,16 +20,25 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Auth_detalle"
+            android:name=".EVA2.autentificacion.Auth_detalle"
             android:exported="false" />
         <activity
-            android:name=".Auth_lista"
+            android:name=".EVA2.autentificacion.Auth_lista"
             android:exported="false" />
         <activity
-            android:name=".Auth_main"
-            android:exported="false" />
+            android:name=".EVA2.autentificacion.Auth_main"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
-            android:name=".DetalleVolumen"
+            android:name=".EVA2.retrofit_listview.DetalleVolumen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -38,11 +47,6 @@
         <activity
             android:name=".EVA2.retrofit_listview.ProyectoLibreria"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
