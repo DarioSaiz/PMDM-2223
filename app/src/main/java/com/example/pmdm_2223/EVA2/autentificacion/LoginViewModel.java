@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.pmdm_2223.EVA2.autentificacion.api.LoginRepository;
 import com.example.pmdm_2223.EVA2.autentificacion.data.LoginRequest;
+import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionRequest;
 import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionResponse;
 import com.example.pmdm_2223.EVA2.autentificacion.data.TokenResponse;
 
@@ -32,6 +33,9 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void getQuestions(String token){
         loginRepository.getQuestions(token);
+    }
+    public void postQuestion(String token, QuestionRequest questionRequest){
+        loginRepository.postQuestion(token, questionRequest);
     }
 
     public LiveData<TokenResponse> getTokenLiveData() {

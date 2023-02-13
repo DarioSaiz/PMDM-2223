@@ -1,14 +1,11 @@
 package com.example.pmdm_2223.EVA2.autentificacion;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,7 +13,7 @@ import com.example.pmdm_2223.EVA2.autentificacion.data.LoginRequest;
 import com.example.pmdm_2223.EVA2.autentificacion.data.TokenResponse;
 import com.example.pmdm_2223.R;
 
-public class Auth_main extends AppCompatActivity {
+public class AuthMain extends AppCompatActivity {
     public static final String TOKEN = "";
     EditText user, pass;
     Button logear;
@@ -38,7 +35,7 @@ public class Auth_main extends AppCompatActivity {
 
         data.observe(this, (dato) ->{
             String token = dato.getToken();
-            Intent intent = new Intent(this, Auth_lista.class);
+            Intent intent = new Intent(this, AuthLista.class);
             intent.putExtra(TOKEN,token);
             startActivity(intent);
         });

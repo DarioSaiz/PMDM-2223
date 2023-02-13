@@ -20,13 +20,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".EVA2.autentificacion.Auth_detalle"
+            android:name=".EVA2.autentificacion.AuthDetalle"
             android:exported="false" />
         <activity
-            android:name=".EVA2.autentificacion.Auth_lista"
+            android:name=".EVA2.autentificacion.AuthLista"
             android:exported="false" />
         <activity
-            android:name=".EVA2.autentificacion.Auth_main"
+            android:name=".EVA2.autentificacion.AuthMain"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

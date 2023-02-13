@@ -5,27 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EVA2.autentificacion.Auth_detalle">
+    tools:context=".EVA2.autentificacion.AuthDetalle">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="NUEVA PREGUNTA"
+        android:textColor="#0B0B0B"
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/auth_detalle_pregunta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Pregunta"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/auth_detalle_fecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Fecha"
+        android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/auth_detalle_añadir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Añadir" />
 </LinearLayout>

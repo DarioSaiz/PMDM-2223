@@ -1,7 +1,7 @@
 
 package com.example.pmdm_2223.EVA2.autentificacion;
 
-import static androidx.constraintlayout.widget.StateSet.TAG;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -12,23 +12,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionResponse;
 import com.example.pmdm_2223.R;
 
 import java.util.List;
 
-public class Auth_lista extends AppCompatActivity {
+public class AuthLista extends AppCompatActivity {
     LoginViewModel vm;
     LiveData <List<QuestionResponse>> listLiveData;
     RecyclerView recyclerView;
     QuestionsAdapter adapter;
+    Button add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_lista);
 
         recyclerView = findViewById(R.id.auth_rv);
+        add = findViewById(R.id.auth_add);
 
         adapter = new QuestionsAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,7 +39,7 @@ public class Auth_lista extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String token = intent.getStringExtra(Auth_main.TOKEN);
+        String token = intent.getStringExtra(AuthMain.TOKEN);
 
         vm = new ViewModelProvider(this).get(LoginViewModel.class);
         vm.init();
@@ -45,6 +48,25 @@ public class Auth_lista extends AppCompatActivity {
 
         listLiveData.observe(this, (dato) ->{
             adapter.setResults(dato);
+        });
+
+        add.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, AuthDetalle.class);
+            intent1.putExtra("TOKEN", token);
+            startActivity(intent1);
+        });
+
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int total = layoutManager.getItemCount();
+                int ultimoVisible = layoutManager.findLastVisibleItemPosition();
+                Log.d(TAG,String.valueOf(ultimoVisible));
+                if (total == (ultimoVisible + 1)) {
+                    vm.getQuestions(token);
+                }
+            }
         });
 
         vm.getQuestions(token);

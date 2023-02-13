@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.pmdm_2223.EVA2.autentificacion.data.LoginRequest;
+import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionRequest;
 import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionResponse;
 import com.example.pmdm_2223.EVA2.autentificacion.data.TokenResponse;
 
@@ -19,7 +20,7 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginRepository {
-    private static final String BASE_URL = "http://192.168.1.127:8000/";
+    private static final String BASE_URL = "http://192.168.20.118:8000/";
     private LoginService loginService;
     private MutableLiveData<TokenResponse> tokenLiveData;
     private MutableLiveData<List<QuestionResponse>> questionListLiveData;
@@ -70,6 +71,22 @@ public class LoginRepository {
                     @Override
                     public void onFailure(Call<List<QuestionResponse>> call, Throwable t) {
                         Log.d(TAG,"PREGUNTAS NO LLAMADAS");
+                    }
+                });
+    }
+    public void postQuestion(String authorization, QuestionRequest questionRequest){
+        loginService.postQuestion("Token "+authorization, questionRequest)
+                .enqueue(new Callback<QuestionResponse>() {
+                    @Override
+                    public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
+                        if (response.body() != null) {
+                            Log.d(TAG, response.body().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<QuestionResponse> call, Throwable t) {
+                        Log.d(TAG, "No se subió nada");
                     }
                 });
     }
