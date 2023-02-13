@@ -1,6 +1,7 @@
 package com.example.pmdm_2223.EVA2.autentificacion.api;
 
 import com.example.pmdm_2223.EVA2.autentificacion.data.LoginRequest;
+import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionRequest;
 import com.example.pmdm_2223.EVA2.autentificacion.data.QuestionResponse;
 import com.example.pmdm_2223.EVA2.autentificacion.data.TokenResponse;
 
@@ -18,4 +19,10 @@ public interface LoginService {
 
     @GET("polls/api/question/")
     Call<List<QuestionResponse>> getQuestions(@Header("Authorization")String authorization);
+
+    @POST("polls/api/question/")
+    Call<QuestionResponse> postQuestion(
+            @Header("Authorization")String authorization,
+            @Body QuestionRequest questionRequest
+    );
 }

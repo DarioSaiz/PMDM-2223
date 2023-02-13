@@ -6,6 +6,8 @@ import static androidx.constraintlayout.widget.StateSet.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +21,18 @@ import java.util.List;
 public class Auth_lista extends AppCompatActivity {
     LoginViewModel vm;
     LiveData <List<QuestionResponse>> listLiveData;
+    RecyclerView recyclerView;
+    QuestionsAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_lista);
+
+        recyclerView = findViewById(R.id.auth_rv);
+
+        adapter = new QuestionsAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         Intent intent = getIntent();
 
@@ -34,9 +44,7 @@ public class Auth_lista extends AppCompatActivity {
         listLiveData = vm.getQuestionListLiveData();
 
         listLiveData.observe(this, (dato) ->{
-            for (QuestionResponse data : dato) {
-                Log.d(TAG, "returned: " + data.getQuestionText());
-            }
+            adapter.setResults(dato);
         });
 
         vm.getQuestions(token);
